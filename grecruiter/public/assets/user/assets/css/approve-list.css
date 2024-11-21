@@ -1,0 +1,30 @@
+.approve-list-tab {
+  display: flex;
+  gap: 10px;
+}
+.table-data-inner {
+  width: 100%;
+}
+
+.table-data-inner thead th {
+  background-color: rgb(255, 65, 65);
+  color: #fff;
+  padding: 5px;
+}
+.table-data-inner tbody tr td {
+  text-align: center;
+  padding: 5px;
+}
+.table-data-inner tbody tr td select {
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+.table-data-inner tbody tr td button[type="submit"] {
+  background-color: rgb(69, 114, 217);
+  border-radius: 3px;
+  padding: 5px;
+  color: #fff;
+}
+.table-data-inner tbody tr:nth-child(odd) {
+  background-color: rgb(255, 231, 231);
+}

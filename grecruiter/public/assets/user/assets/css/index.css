@@ -1,0 +1,307 @@
+a:hover {
+    color: #fffafa;
+}
+
+.container {
+    padding: 0 var(--padding-20);
+}
+.container-1-4 {
+    display: flex;
+
+    column-gap: 20px;
+}
+.container-nav-bar-ul li {
+    padding: 10px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+.container-nav-bar-ul li:hover {
+    background-color: var(--color-main);
+    color: #fffafa;
+}
+
+.container-nav-bar-ul li i {
+    width: 20px;
+    padding-right: 50px;
+}
+hr {
+    margin: 20px 0;
+}
+
+.slide-header {
+    height: 250px;
+    background-image: url("/assets/user/assets/images/zed.jpg");
+    background-size: cover;
+    border-radius: var(--rounded-5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+.slide-header h1 {
+    text-align: center;
+    color: white;
+}
+.slide-header a {
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--stroke-color);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-weight: bold;
+    transition: all 300ms ease-in-out;
+}
+.slide-header a:hover {
+    font-size: 20px;
+}
+
+.list-esport {
+    margin: 20px 0;
+}
+
+.title-list-bar {
+    display: flex;
+    justify-content: space-between;
+    border-left: 4px solid var(--color-main);
+    padding-left: 10px;
+    margin: 30px 0 10px 0;
+}
+.title-list-bar h3:first-child {
+    font-size: 30px;
+}
+.title-list-bar h3:last-child {
+    color: var(--color-main);
+    cursor: pointer;
+}
+.list-esport-main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+.list-esport-main-item {
+    background-image: url("/assets/images/games/lol-bgr.png");
+    aspect-ratio: 1/1;
+    background-size: cover;
+    border-radius: var(--rounded-5);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 10px;
+    box-shadow: inset 0 -40px 60px 20px #0000009c;
+    cursor: pointer;
+    transition: all 500ms ease-in-out;
+    border: 2px solid transparent;
+}
+.list-esport-main-item:hover {
+    padding-bottom: 50%;
+    background-position: center;
+    background-size: 200%;
+    border: 2px solid var(--color-main);
+}
+.list-esport-main-item h3 {
+    padding: 5px 10px;
+    border-radius: var(--rounded-5);
+}
+.list-esport-main-item:hover > h3 {
+    background-color: white;
+    border: 1px dashed var(--color-main);
+    color: var(--color-main);
+    transform: translateY(50%);
+}
+.list-esport-main-item h3 {
+    color: white;
+    font-size: 25px;
+}
+.list-esport-main-item:nth-child(2) {
+    background-image: url("/assets/images/games/dota2bgr.png");
+}
+.list-esport-main-item:nth-child(3) {
+    background-image: url("/assets/images/games/valo-bgr.png");
+}
+.list-esport-main-item:nth-child(4) {
+    background-image: url("/assets/images/games/cs2bgr.png");
+}
+
+.list-player-main-item {
+    position: relative;
+    aspect-ratio: 1/1;
+    border-radius: var(--rounded-5);
+    transition: all 500ms ease-in-out;
+    overflow: hidden;
+}
+.list-player-main-item img {
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    border-radius: var(--rounded-5);
+    box-shadow: inset 0 -40px 60px 20px #0000009c;
+    transition: all 500ms ease-in-out;
+}
+.player-item-details {
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    z-index: 2;
+}
+.player-nickname {
+    display: inline-block;
+    text-align: center;
+    color: white;
+    padding: 2px 4px;
+    font-size: 10px;
+    border: 2px solid #888888;
+    border-radius: var(--rounded-5);
+    background-color: #2f2e2e;
+}
+.player-item-details h2 {
+    color: white;
+    margin-bottom: 10px;
+}
+.player-item-details a {
+    padding: 5px 10px;
+    background-color: var(--color-main);
+    border-radius: var(--rounded-5);
+    color: white;
+    font-weight: 600;
+    margin-top: 20px;
+}
+.advantage {
+    margin-top: 20px;
+    display: none;
+}
+.advantage p {
+    color: white;
+}
+.advantage i {
+    margin-right: 10px;
+    color: white;
+}
+.list-player-main-item:hover .player-item-details {
+    animation: move-to-top 500ms both;
+}
+.list-player-main-item:hover .advantage {
+    display: block;
+    animation: move-to-top 500ms both;
+}
+/* animation: move-to-top 500ms both;
+    transition: all 500ms ease-in-out; */
+@keyframes move-to-top {
+    0% {
+        transform: translateY(120%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+    0% {
+        transform: translateY(120%);
+    }
+}
+.list-post-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+.post-main-item {
+    border: 1px solid var(--stroke-item);
+    border-radius: var(--rounded-5);
+    overflow: hidden;
+    position: relative;
+}
+.post-main-item img {
+    width: 100%;
+}
+.post-detail {
+    padding: 10px;
+}
+.post-detail hr {
+    margin: 10px 0;
+}
+.post-detail-header {
+    display: flex;
+    gap: 10px;
+}
+.avatar-post {
+    aspect-ratio: 1/1;
+    width: 100%;
+    max-width: 40px;
+    max-height: 40px;
+}
+.post-detail-header-user span:first-child {
+    color: var(--color-main);
+    font-weight: 800;
+}
+.post-detail-header-user span:nth-child(2) {
+    font-size: 13px;
+}
+.esport-in-post {
+    color: var(--color-esport);
+    font-style: italic;
+}
+.topic-name-post {
+    font-weight: bold;
+}
+.post-detail-content span {
+    font-size: 14px;
+}
+.read-more-post {
+    position: absolute;
+    padding: 5px 10px;
+    background-color: var(--color-main);
+    color: white;
+    border-radius: var(--rounded-5);
+    right: 10px;
+    bottom: 10px;
+}
+.post-main-item {
+    cursor: pointer;
+}
+.post-main-item:hover {
+    background-color: #fffafa;
+}
+.post-detail-content {
+    cursor: text;
+}
+.post-main-item:hover .post-detail-content span {
+}
+.post-thumbnail {
+    scale: 1.1;
+    transition: all 500ms ease-in-out;
+}
+.post-main-item:hover .post-thumbnail {
+    scale: 1.2;
+}
+.thumbnail-container {
+    overflow: hidden;
+}
+.read-more-post:hover {
+    background-color: rgb(73, 183, 146);
+}
+.list-player-main-item:hover img {
+    scale: 1.1;
+}
+.post-detail-header-user span:first-child:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 1024px) {
+    .container-nav-bar-ul li span {
+        display: none;
+    }
+}
+
+.my-btn {
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+.my-btn-save {
+    border: 1px solid #888888;
+}

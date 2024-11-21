@@ -1,0 +1,128 @@
+* {
+    font-family: "Mulish", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--color-black);
+    transition: all 300ms ease-in-out;
+}
+button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+button:focus {
+    outline: none !important;
+    border: none;
+}
+ul {
+    list-style-type: none;
+}
+a {
+    text-decoration: none;
+}
+body::-webkit-scrollbar {
+    width: 10px;
+}
+body::-webkit-scrollbar-thumb {
+    background-color: var(--color-main);
+    border-radius: 5px;
+}
+body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+input,
+textarea {
+    background-color: #fff;
+}
+.notify {
+    z-index: 100;
+}
+.hidden-display {
+    display: none;
+}
+
+.container-nav-bar {
+    max-width: 300px;
+}
+.header-nav {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-nav img {
+    aspect-ratio: 1/1;
+    height: 50px;
+    border-radius: 50%;
+}
+.header-nav-left {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-10);
+}
+.header-nav-left i {
+    font-size: 25px;
+}
+.header-nav-left button {
+    padding: 0 10px;
+}
+.header-nav-left button:hover i {
+    color: var(--color-main);
+}
+.header-nav-left span {
+    font-family: "Bebas Neue", sans-serif;
+    font-style: italic;
+    font-size: 25px;
+    color: var(--color-main);
+}
+.form-search {
+    display: flex;
+    width: 500px;
+}
+.form-search input {
+    flex: 1;
+    height: 40px;
+    border-radius: 20px 0 0 20px;
+    padding-left: 20px;
+    border: 1px solid var(--stroke-color);
+}
+.form-search input:focus-visible {
+    outline: none;
+}
+.form-search button {
+    width: 60px;
+    border: 1px solid var(--stroke-color);
+    border-left: none;
+    height: 40px;
+    border-radius: 0 20px 20px 0;
+}
+.main-content {
+    flex: 1;
+}
+
+.container-nav-bar-ul li {
+    position: relative;
+}
+.container-nav-bar-ul a:hover {
+    color: #fff;
+    transition: all 0ms !important;
+}
+.container-nav-bar-ul .child-nav {
+    position: absolute;
+    left: 110%;
+    top: 0;
+    background-color: #fff;
+    width: 350px;
+    border-radius: 20px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+}
+.container-nav-bar-ul li:hover .child-nav {
+    left: 100%;
+    opacity: 1;
+    visibility: visible;
+}

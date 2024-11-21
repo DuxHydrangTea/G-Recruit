@@ -1,0 +1,42 @@
+.detail-child {
+    opacity: 0;
+    visibility: hidden;
+    translate: 20px 0;
+    transition: all 500ms ease;
+}
+.detail-parent {
+}
+.detail-parent:hover .detail-child {
+    opacity: 1;
+    visibility: visible;
+    translate: 5px 0;
+}
+.detail-parent::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: blueviolet;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    transition: all 500ms ease;
+    opacity: 0;
+}
+.detail-parent:hover::after {
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    opacity: 1;
+
+    transform: translate(0, 0);
+    height: unset;
+}
+
+div[popover] {
+    margin: auto;
+}
+div[popover]::backdrop {
+    background-color: #0009;
+}

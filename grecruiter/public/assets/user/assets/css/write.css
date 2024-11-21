@@ -1,0 +1,67 @@
+.form-write {
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 0 auto;
+}
+.title {
+  font-size: 1.1rem;
+  color: var(--color-main);
+}
+.grid-1-5 {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+.span2-6 {
+  grid-column: 2/6;
+}
+
+.form-write label {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+.form-write input,
+select {
+  min-height: 30px;
+  padding: 5px 10px;
+}
+.out-line-input {
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+.form-write input:focus-visible {
+  outline: none;
+}
+.content {
+  min-height: 500px;
+  grid-column: 2/6;
+}
+
+.flex-align-center {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.radio-box label:first-child {
+  padding-left: 20px;
+}
+#output {
+  width: 100%;
+  object-fit: cover;
+}
+.write-post-submit {
+  max-width: 100px;
+  padding: 10px 15px;
+  background-color: var(--color-main);
+  border-radius: 5px;
+  color: white;
+  border: 2px solid #fda1b1;
+  grid-column: 5/6;
+}
+.write-post-submit:hover {
+  background-color: #fda1b1;
+  border-color: var(--color-main);
+  color: var(--color-main);
+}

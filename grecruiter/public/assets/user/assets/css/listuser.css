@@ -1,0 +1,129 @@
+
+.game-details {
+ display: grid;
+ grid-template-rows: 1fr 1fr;
+ gap: 20px;
+}
+.item-player{
+    border: 1px solid var(--stroke-item);
+    border-radius: var(--rounded-5);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+.nick-name{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    color: white;
+    background-color: var(--color-black);
+    border: 1px solid var(--stroke-item);
+    border-radius:  var(--rounded-5);
+    padding: 5px 10px;
+}
+.item-player img{
+    width: 100%;
+    object-fit: cover;
+    max-height: 300px;
+}
+.item-player:hover .player-avatar{
+    scale: 1.1;
+} 
+.player-detail{
+    padding: 10px;
+}
+.game-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+.game-details h4{
+    font-style: italic;
+}
+.game-details img{
+    max-width: 30px;
+    aspect-ratio: 1/1;
+}
+.game-name{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.game-name img{
+    max-width: 20px;
+}
+.game-name span{
+    font-weight: 600;
+    font-style: italic;
+    color: var(--color-esport);
+   
+}
+.game-name:hover{
+
+    text-decoration: underline;
+    text-decoration-color: var(--color-esport);
+
+}
+.player-advantages ul li{
+    padding: 10px 0;
+}
+.player-btn{
+    padding: 5px 10px;
+    border-radius: var(--rounded-5);
+}
+.view-profile{
+    background-color: var(--color-main);
+    border: 1px solid transparent;
+    color: white;
+    
+}
+.view-profile:hover{
+    border: 1px solid var(--color-main);
+    background-color: transparent;
+    color: var(--color-main);
+}
+.contact{
+    color: var(--color-esport);
+}
+.contact:hover{
+    color: white;
+    background-color: var(--color-esport);
+}
+
+
+/* box-shadow: inset 0 -40px 60px 20px #0000009c; */
+.item-player:hover{
+box-shadow: inset 0 -40px 60px 20px #e3e3e39c;
+    
+}
+
+.filter-bar{
+    margin: 20px 0 ;
+    padding: 0 0  0 10px;
+    border-left: 10px solid var(--color-main);
+}
+.filter-bar form{
+    display: flex;
+    gap: 30px;
+}
+.filter-bar-element label{
+    font-weight: 800;
+}
+.filter-bar-element select{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--stroke-item);
+}
+.filter-bar-element select:focus-visible{
+    outline: none;
+}
+.filter-submit{
+    font-weight: 800;
+    background-color: var(--color-main);
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    color: white;
+}

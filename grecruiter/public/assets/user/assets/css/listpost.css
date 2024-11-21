@@ -1,0 +1,104 @@
+hr {
+    margin: 5px 10px;
+}
+.poster-item {
+    border: 1px solid var(--stroke-item);
+    border-radius: var(--rounded-5);
+    border-top: 5px solid #fc4969;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+.center-margin {
+    margin: 0 auto;
+}
+.poster-name {
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+.poster-item-header {
+    display: flex;
+    gap: 10px;
+}
+.poster-item-header p {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.poster-item-header-img {
+    max-width: 50px;
+    aspect-ratio: 1/1;
+}
+.count-comment {
+    display: inline-flex;
+    padding: 5px 10px;
+}
+
+.abstract-post {
+    font-weight: bold;
+    background-color: rgb(203, 201, 255);
+}
+
+.content-post {
+    margin: 10px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+
+    -webkit-box-orient: vertical;
+}
+.btn-read-more {
+    cursor: pointer;
+    padding: 10px;
+    background-color: blueviolet;
+    width: fit-content;
+    border-radius: 5px;
+    color: #fff;
+    border: 1px solid transparent;
+}
+.btn-read-more:hover {
+    color: blueviolet;
+    background-color: #fff;
+    border: 1px solid blueviolet;
+}
+
+.max-line-4 {
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+}
+.list-sport {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.list-post {
+    flex: 1;
+}
+.list-esport {
+    max-width: 400px;
+}
+.list-post-main {
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.list-sport-main {
+    flex: 1;
+}
+
+.list-sport-comments {
+    width: 400px;
+}
+
+.form-comments {
+    gap: 5px !important;
+}
+.comment-container-heading {
+    border-bottom: 2px solid #fc4969;
+    margin: 10px 0;
+}
+.comment-list li {
+    margin: 10px 0;
+}
+.comment-body-text {
+    background-color: rgb(234, 234, 234);
+    padding: 5px;
+    border-radius: 5px;
+}
