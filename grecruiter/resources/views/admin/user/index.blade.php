@@ -57,7 +57,7 @@
                             
                             <td><a href="{{ route('user.show', $u) }}"><strong>{{$u->nickname}}</strong></a>  </td>
                             <td>{{$u->name}}</td>
-                            <td> <img src="{{ asset('storage/images').'/'.$u->avatar}}" alt="" width="30px" height="30px"  class="avatar"> </td>
+                            <td> <img src="{{ '/storage'.$u->avatar}}" alt="" width="30px" height="30px"  class="avatar"> </td>
                             <td>{{$u->email}}</td>
                             <td>{{$u->esport->esport_name ?? "None"}}</td>
                             <td>{{$u->position_id}}</td>

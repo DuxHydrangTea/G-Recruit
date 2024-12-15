@@ -37,9 +37,20 @@ class PostController extends Controller
         $this->postRepositoryInterface->update($post->id, [
             'is_privated' => $newStatus,
         ]);
+        notify()->success('Cập nhật chế độ thành công!', 'Tin nhắn từ hệ thống');
         return redirect()->back();
     }
     public function forceDelete($slug)
     {
+        $post = $this->postRepositoryInterface->findBySlug($slug);
+
+        try {
+            $this->postRepositoryInterface->force_delete($post->id);
+            notify()->success('Đã xoá vĩnh viễn!', 'Tin nhắn từ hệ thống');
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            notify()->success('Xoá vĩnh viễn thất bại!Vui lòng thử lại sau', 'Tin nhắn từ hệ thống');
+            return redirect()->back();
+        }
     }
 }

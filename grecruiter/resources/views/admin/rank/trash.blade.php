@@ -54,7 +54,7 @@
                                  
                         <tr>
                             <td>{{$r->id}}</td>
-                            <td> <img src="{{ asset('storage/images').'/'.$r->icon}}" alt="" width="30px" height="30px"> </td>
+                            <td> <img src="{{ '/storage'.$r->icon}}" alt="" width="30px" height="30px"> </td>
                             <td>  {{$r->rank_name}}</td>
                             <td>{{ $r->esport->esport_name}}</td>
                             <td>

@@ -19,7 +19,9 @@
     />
     <link rel="stylesheet" href="/assets/user/assets/css/root.css" />
     <link rel="stylesheet" href="/assets/user/assets/css/login.css" />
-    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Đăng nhập</title>
   </head>
   <body>
     <div
@@ -27,11 +29,11 @@
       style="background-image: url(/assets/user/assets/images/zed.jpg)"
     >
       <div class="login-box">
-        <h2>Login Form G-Recruiter</h2>
+        <h2>Đăng nhập</h2>
         @session('errors')
             {{session('errors')}}
         @endsession
-        <form action="{{route('client.handleLogin')}}" method="POST">
+        <form action="{{route('client.handleLogin')}}" method="POST" class="w-[350px]">
             @csrf
           <div class="input-field">
             <p for="email"><strong>Email</strong></p>
@@ -45,10 +47,10 @@
             <p><strong>Remember</strong></p>
             <input type="checkbox" name="remember" />
           </div>
-          <button type="submit" class="btn-submit">submit</button>
+          <button type="submit" class="btn-submit">Đăng nhập</button>
           <div class="forgot-password">
             <a href="">Forgot password?</a>
-            <a href="">Register</a>
+            <a href="{{route('client.register')}}">Register</a>
           </div>
         </form>
       </div>

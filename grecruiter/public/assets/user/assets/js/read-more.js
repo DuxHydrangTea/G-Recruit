@@ -1,7 +1,7 @@
 const post_items = document.querySelectorAll('.poster-item')
 
 post_items.forEach(p =>{
-    var btnReadMore =  p.querySelector('button')
+    var btnReadMore =  p.querySelector('.btn-read-more')
     var content = p.querySelector('.content-post')
     btnReadMore.addEventListener('click', e =>{
         content.classList.toggle('max-line-4')

@@ -40,3 +40,10 @@ div[popover] {
 div[popover]::backdrop {
     background-color: #0009;
 }
+
+.tippy-box {
+    color: #000; /* Màu nền trắng */
+    background-color: #fff; /* Màu chữ đen */
+
+    border: 2px solid #000;
+}

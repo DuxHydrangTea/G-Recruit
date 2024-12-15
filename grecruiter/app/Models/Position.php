@@ -35,6 +35,8 @@ class Position extends Model
     // scope
     public function scopePositionsOf($query, $esport_id)
     {
-        return $query->where('esport_id', 0)->orWhere('esport_id', $esport_id)->get();
+        return $query->when($esport_id, function($query, $esport_id){
+            return  $query->where('esport_id', 0)->orWhere('esport_id', $esport_id);
+        })->get();
     }
 }

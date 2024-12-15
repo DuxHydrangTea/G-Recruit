@@ -17,7 +17,7 @@ a:hover {
 }
 .container-nav-bar-ul li:hover {
     background-color: var(--color-main);
-    color: #fffafa;
+    /* color: #fffafa; */
 }
 
 .container-nav-bar-ul li i {
@@ -166,14 +166,14 @@ hr {
     color: white;
     margin-bottom: 10px;
 }
-.player-item-details a {
+/* .player-item-details a {
     padding: 5px 10px;
     background-color: var(--color-main);
     border-radius: var(--rounded-5);
     color: white;
     font-weight: 600;
     margin-top: 20px;
-}
+} */
 .advantage {
     margin-top: 20px;
     display: none;

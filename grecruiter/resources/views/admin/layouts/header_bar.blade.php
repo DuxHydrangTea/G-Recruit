@@ -15,7 +15,7 @@
             <li class="sidebar-item active ">
                 <a href="{{route('admin.index')}}" class='sidebar-link'>
                     <i data-feather="home" width="20"></i> 
-                    <span>Dashboard</span>
+                    <span>Trang chủ</span>
                 </a>
                 
             </li>
@@ -24,8 +24,8 @@
         
             <li class="sidebar-item active ">
                 <a href="{{route('esport.index')}}" class='sidebar-link'>
-                    <i data-feather="triangle" width="20"></i> 
-                    <span>Esport Game</span>
+                    <i class="fa-solid fa-gamepad"></i>
+                    <span>Bộ môn</span>
                 </a>
                 
             </li>
@@ -34,7 +34,7 @@
             <li class="sidebar-item active ">
                 <a href="{{route('menu.index')}}" class='sidebar-link'>
                     <i data-feather="menu" width="20"></i> 
-                    <span>Menu</span>
+                    <span>Danh mục</span>
                 </a>
                 
             </li>
@@ -42,15 +42,15 @@
             <li class="sidebar-item active ">
                 <a href="{{route('rank.index')}}" class='sidebar-link'>
                     <i data-feather="layout" width="20"></i> 
-                    <span>Rank Elements</span>
+                    <span>Loại xếp hạng</span>
                 </a>
                 
             </li>
         
             <li class="sidebar-item active ">
                 <a href="{{ route('position.index') }}" class='sidebar-link'>
-                    <i data-feather="user" width="20"></i> 
-                    <span>Positions</span>
+                    <i class="fa-solid fa-crosshairs"></i>
+                    <span>Loại vị trí</span>
                 </a>
                 
             </li>
@@ -58,39 +58,31 @@
             <li class="sidebar-item active ">
                 <a href="{{ route('user.index') }}" class='sidebar-link'>
                     <i data-feather="user" width="20"></i> 
-                    <span>User</span>
+                    <span>Người dùng</span>
                 </a>
                 
             </li>
         
             <li class="sidebar-item active ">
                 <a href="{{ route('esport-team.index') }}" class='sidebar-link'>
-                    <i data-feather="user" width="20"></i> 
-                    <span>Esport Team</span>
+                    <i class="fa-solid fa-people-group"></i> 
+                    <span>Đội tuyển</span>
                 </a>
                 
             </li>
-            <li class="sidebar-item active ">
-                <a href="{{ route('menu.index') }}" class='sidebar-link'>
-                    <i data-feather="user" width="20"></i> 
-                    <span>Menu</span>
-                </a>
-                
-            </li>
-
+            
 
             <li class="sidebar-item active ">
                 <a href="{{ route('topic.index') }}" class='sidebar-link'>
-                    <i data-feather="user" width="20"></i> 
-                    <span>Topic</span>
+                    <i class="fa-solid fa-table"></i>
+                    <span>Thể loại</span>
                 </a>
                 
             </li>
 
             <li class="sidebar-item active ">
                 <a href="{{ route('post.index') }}" class='sidebar-link'>
-                    <i data-feather="user" width="20"></i> 
-                    <span>Post</span>
+                    <i class="fa-solid fa-newspaper"></i>                    <span>Bài viết</span>
                 </a>
                 
             </li>

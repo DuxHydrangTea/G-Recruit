@@ -11,11 +11,17 @@ class EsportTeam extends Model
     use HasFactory;
     use SoftDeletes;
     protected $fillable = [
+        'icon',
         'name',
         'avatar',
         'esport_id',
         'description',
+        'is_recruiting',
+        'recruiting_status',
+        'is_approved',
     ];
+
+    // ==  RELATIONSHIP  ==
     public function esport()
     {
         return $this->belongsTo(Esport::class);
@@ -31,5 +37,20 @@ class EsportTeam extends Model
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    // == METHOD ==
+    public function getRelatestPost()
+    {
+        return $this->posts()->latest()->first();
+    }
+    // == SCOPE ==
+    public function scopeApproved($query)
+    {
+        return $query->where('is_approved', true);
+    }
+    public function scopeNotApproved($query)
+    {
+        return $query->where('is_approved', false);
     }
 }

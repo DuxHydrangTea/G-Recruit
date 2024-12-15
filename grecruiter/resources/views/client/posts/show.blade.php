@@ -32,13 +32,13 @@
                     <div class="p-2">
                       <header class="poster-item-header pb-1">
                         <img
-                          src="/storage/images/{{$author->avatar}}"
+                          src="/storage{{$p->getAuthor()->avatar}}"
                           style="border-radius: 50%"
                           class="poster-item-header-img"
                         />
                         <div class="poster-name">
                           <p class="hover:underline font-bold text-rose-600">
-                            {{$author->name}}
+                            {{$p->getAuthor()->name}}
                           </p>
                           <span>{{$p->topic->topic_name}}</span>
                           <span class="esport-in-post"> - {{$p->esport->esport_name}}</span>
@@ -59,7 +59,7 @@
                     </div>
   
                     <img
-                      src="/storage/images/{{$p->thumbnail}}"
+                      src="/storage{{$p->thumbnail}}"
                       alt=""
                       srcset=""
                       width="100%"

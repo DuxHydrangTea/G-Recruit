@@ -48,11 +48,11 @@
                                 {{$p->abstract}}
                             </p>
                         </div>
-                        <img class="img-fluid" src="/storage/images/{{$p->thumbnail}}" alt="Card image cap">
+                        <img class="img-fluid" src="/storage{{$p->thumbnail}}" alt="Card image cap">
                     </div>
                     <div class="card-footer flex-column gap-5">
                         <div class="d-flex align-items-center gap-5 mb-3">
-                            <img class="img-fluid avatar-sm" src="/storage/images/{{$p->user->avatar}}" alt="Card image cap">
+                            <img class="img-fluid avatar-sm" src="/storage{{$p->user->avatar}}" alt="Card image cap">
                             <span >{{$p->user->name}}</span>
                             <span >- {{$p->created_at->diffForHumans()}}</span>
     

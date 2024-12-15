@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Esport;
 use App\Models\Apply;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
@@ -64,17 +64,17 @@ class User extends Authenticatable
     // ================ RELATIONSHIP ======================
     public function esport()
     {
-        return $this->belongsTo(Esport::class);
+        return $this->belongsTo(Esport::class)->withDefault();
     }
     public function position()
     {
-        return $this->belongsTo(Position::class);
+        return $this->belongsTo(Position::class)->withDefault();
     }
     public function rank()
     {
-        return $this->belongsTo(Rank::class);
+        return $this->belongsTo(Rank::class)->withDefault();
     }
-    public function timeline()
+    public function timelines()
     {
         return $this->hasMany(TimeLine::class);
     }
@@ -84,7 +84,7 @@ class User extends Authenticatable
     }
     public function esportTeam()
     {
-        return $this->belongsTo(EsportTeam::class);
+        return $this->belongsTo(EsportTeam::class)->withDefault();
     }
     public function posts()
     {
@@ -106,7 +106,10 @@ class User extends Authenticatable
         return $query->where('is_admin', false);
     }
 
-
+    public function scopeNotFounders($query)
+    {
+        return $query->where('esport_team_id', 0);
+    }
 
     //============== METHOD ======================
     public function founderOfTeam(): bool
@@ -138,5 +141,51 @@ class User extends Authenticatable
         $member = Member::where('user_id', $this->id)->first();
 
         return $member->esportTeam ?? false;
+    }
+
+    public function canBeApply(): bool
+    {
+        $user = User::find(Auth::user()->id);
+        if ($user->esport_team_id) {
+            return false;
+        }
+        if ($user->beJoinedTeam()) {
+            return false;
+        }
+        return true;
+    }
+
+    public function isApply($esport_id): bool
+    {
+        $apply = Apply::where('esport_team_id', $esport_id)->where('user_id', Auth::user()->id)->where('apply_type_id', 1)->first();
+
+        if ($apply) {
+            return true;
+        } else
+            return false;
+    }
+
+    /**
+     * Trả về EsportTeam là đội tuyển mà user thuộc về \n
+     * Nếu user là chủ một đội tuyển thì trả về đội tuyển user sở hữu \n
+     * Nếu user là thành viên của 1 đội tuyển thì sẽ trả về đội tuyển sở hữu user đó \n
+     * @return mixed
+     */
+    public function getTeamBelong()
+    {
+        if ($this->esport_team_id != 0) {
+
+            return $this->esportTeam;
+        }
+
+        $team_id = 0;
+        $member = Member::where('user_id', $this->id)->first();
+        if ($member) {
+            $team_id = $member->esport_team_id;
+
+            return EsportTeam::find($team_id);// return null if not found
+        }
+        return null;
+
     }
 }

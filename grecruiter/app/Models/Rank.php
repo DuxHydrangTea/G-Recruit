@@ -20,7 +20,7 @@ class Rank extends Model
     ];
     public function esport()
     {
-        return $this->belongsTo(Esport::class);
+        return $this->belongsTo(Esport::class)->withDefault();
     }
     public function user()
     {

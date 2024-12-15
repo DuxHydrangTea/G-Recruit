@@ -6,13 +6,13 @@
 <section class="section">
     <div class="card m-3">
         <div class="card-header">
-            <h4 class="card-title">Personal Information</h4>
+            <h4 class="card-title">Thông tin</h4>
         </div>
         <div class="card-body">
             <div class="row">
             
                 <div class="col-md-12">
-                    <img class="col-md-2 mt-3 mb-1 avatar" src="https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/457026271_1933260077147062_8098894341863480578_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeGCgdh-2a9mAVZFw-0tASJYR7X39fvz6BJHtff1-_PoEk-9KJ4A5xQnLlRbIJzDposClxW_B3qkJpLNx8bOo_df&_nc_ohc=qhN4-Bi7JEQQ7kNvgF5CvBZ&_nc_ht=scontent.fhan2-4.fna&oh=00_AYCZ89i5mEjTU5nb8e4npgN7WqNkpFV2zPOrU8C7iObBSw&oe=66D4BFC4" alt="">
+                    <img class="col-md-2 mt-3 mb-1 avatar" src="/storage{{$user->avatar}}" alt="">
                     <h5 class="card-title pl-5 font-bold">{{$user->nickname }}</h5>
                     <div class="row">
                         <div class="col-3">
@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 <ul>  
-                                @forelse ($user->timeline as $timeline )
+                                @forelse ($user->timelines as $timeline )
                                    <li> <strong>{{$timeline->start_time}} to {{$timeline->end_time}}</strong>: {{$timeline->description}} </li>
                                     
                                 @empty

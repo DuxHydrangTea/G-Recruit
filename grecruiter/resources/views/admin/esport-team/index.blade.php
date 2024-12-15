@@ -20,7 +20,8 @@
                     </p>
                
                 
-               <a href="{{ route('esport-team.create') }}"> Click here to create a new team </a>
+               <a class="btn btn-primary" href="{{ route('esport-team.create') }}"> Tạo đội tuyển mới! </a>
+               <a class="btn btn-secondary" href="{{ route('esport_team.non_approved_teams') }}"> Danh sách đội chưa duyệt </a>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class='breadcrumb-header'>
@@ -46,6 +47,7 @@
                             <th>Avatar</th>
                             <th>Esport</th>
                             <th>Members</th>
+                            <th>Status</th>
                             <th>Function</th>
                         </tr>
                     </thead>
@@ -56,14 +58,22 @@
                             
                             <td><a href=""><strong>{{$d->id}}</strong></a>  </td>
                             <td>{{$d->name}}</td>
-                            <td> <img src="{{ asset('storage/images').'/'.$d->avatar}}" alt="" width="30px" height="30px"  class="avatar"> </td>
+                            <td> <img src="/storage{{$d->avatar}}" alt="" width="30px" height="30px"  class="avatar"> </td>
                             <td>{{$d->esport->esport_name}}</td>
                             
                             <td>{{$d->members->count()}}</td>
                             <td>
+                                @if($d->is_approved)
+                                    <span>Đã duyệt</span>
+                                @else
+                                    <a href="{{route('esport_team.approve', $d->id)}}" class="d-inline-flex btn btn-success mb-3">Duyệt ngay</a>
+                                    <a href="{{route('esport_team.deny', $d->id)}}" class="btn btn-warning d-inline-flex ">Từ chối</a>
+                                @endif
+                            </td>
+                            <td>
                                 
-                                <a href="{{ route('esport-team.edit', $d->id) }}"><span class="badge bg-warning">Edit</span></a>
-                                <a href="" data-toggle="modal" data-target="#exampleModalCenter{{$d->id}}"><span class="badge bg-danger">Remove</span></a>
+                                <a href="{{ route('esport-team.edit', $d->id) }}" class="d-block mb-3"><span class="badge bg-warning">Edit</span></a>
+                                <a href="" class="d-block" data-toggle="modal" data-target="#exampleModalCenter{{$d->id}}"><span class="badge bg-danger">Remove</span></a>
                               
                             </td>
                         </tr>

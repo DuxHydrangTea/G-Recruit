@@ -139,7 +139,7 @@
                         <label>Avatar</label>
                     </div>
                     <div class="col-md-4 form-group">
-                        <img src="{{ asset('storage/images').'/'.$user->avatar }}" alt="" width="150px" >
+                        <img src="{{ '/storage'.$user->avatar }}" alt="" width="150px" >
                     </div> 
                     <div class="col-md-4 form-group">
                         <input type="file" id="contact-info" class="form-control" name="avatar" >

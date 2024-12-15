@@ -35,7 +35,7 @@
                 <div class="form-body">
                     <div class="row">
                     <div class="col-md-12 mb-3 ">
-                        <img src="{{ asset('storage/images'.'/'.$data->avatar) }}" alt="" class="avatar" height="100px" width="100px">
+                        <img src="{{ '/storage'.''.$data->avatar }}" alt="" class="avatar" height="100px" width="100px">
                     </div>
                     <div class="col-md-4">
                         <label>Team name</label>

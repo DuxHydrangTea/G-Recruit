@@ -1,84 +1,87 @@
 @extends('client.page')
 @section('user-main-content')
-@include('notify::components.notify')
+
     <div class="container">
       <div class="container-1-4">
         <!-- menu left side -->
         @include('client.layouts.side-bar')
         <!-- main content -->
         <div class="main-content">
-          <div class="cover-image">
+          <div class="cover-image border shadow">
             <img src="/assets/user/assets/images/Frame 7.png" width="100%" alt="" />
             <div class="infor-inner">
               <div class="infor-basic">
                 <img
-                  src="/assets/user/assets/images/azir.jpg"
+                  src="/storage{{$user->avatar}}"
                   width="100px"
                   height="100px"
                   alt=""
                 />
                 <div class="infor-name">
-                  <h2>{{$user->name}}</h2>
+                  <h2 class="text-2xl font-bold">{{$user->name}}</h2>
                   <p class="">
-                    {{$user->nickname}} -
-                    <span
-                      >N.N.D havent join anyteam...
-                      <a href=""><strong>INVITE HIM</strong></a></span
-                    >
+                    {{$user->nickname}} 
+                   
                   </p>
                 </div>
-                <p class="type-user">Pro Player</p>
-                <a href="" class="link-highlight"
-                  ><svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="1.2em"
-                    height="1.2em"
-                    viewBox="0 0 24 24"
+                
+                <button onclick="change_password.showModal()" class="btn bg-yellow-50 text-red-500  inline-flex items-center gap-1"
                   >
-                    <g fill="none" fill-rule="evenodd">
-                      <path
-                        d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"
-                      />
-                      <path
-                        fill="currentColor"
-                        d="M4 3a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm4.625 5.63a1.235 1.235 0 0 1 1.715-.992c.504.216 1.568.702 2.916 1.48a28 28 0 0 1 2.74 1.786a1.234 1.234 0 0 1 0 1.98a28 28 0 0 1-2.74 1.784a28 28 0 0 1-2.916 1.482a1.234 1.234 0 0 1-1.715-.992a29 29 0 0 1-.176-3.264c0-1.551.112-2.719.176-3.264"
-                      />
-                    </g>
-                  </svg>
-                  Highlight Video</a
+                 <span class="text-red-500">Đổi mật khẩu</span> </button
                 >
+                <dialog id="change_password" class="modal">
+                  <div class="modal-box">
+                    <form method="dialog">
+                      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <h3 class="text-lg font-bold">Đổi mật khẩu</h3>
+                    <form action="{{route('client.my_profile.change_password')}}" method="POST" class="w-full">
+                      @csrf
+                      <label class="form-control w-full ">
+                        <div class="label">
+                          <span class="label-text">Mật khẩu cũ</span>
+                        
+                        </div>
+                        <input type="password" name="old_password" value="{{old('old_password')}}" placeholder="Mật khẩu cũ" class="input input-bordered w-full " />
+                     
+                      </label>
+                      <label class="form-control w-full">
+                        <div class="label">
+                          <span class="label-text">Mật khẩu mới</span>
+                        </div>
+                        <input type="password" id="password" name="new_password" placeholder="Mật khẩu mới" class="input input-bordered w-full " />
+                     
+                      </label>
+                      <label class="form-control w-full ">
+                        <div class="label">
+                          <span class="label-text">Nhập lại mật khẩu</span>
+                        
+                        </div>
+                        <input type="password" id="confirm_password" name="repeat_password" placeholder="Nhập lại mật khẩu" class="input input-bordered w-full " />
+                     
+                      </label>
+                      <h1 class="text-white border-red-400 p-1 rounded" id="message"></h1>
+                      <button type="submit" class="btn btn-primary my-2 ml-auto" id="submit_change_password">Xác nhận</button>
+                    </form>
+                  </div>
+                </dialog>
               </div>
-              <div class="infor-follow">
-                <a href="" class="follow-action"
-                  >Follow <strong>{{$user->name}}</strong></a
-                >
-                <button><strong>4</strong> followers</button>
-                <button><strong>4</strong> followings</button>
-                <button><strong>4</strong> posts</button>
-              </div>
+              
             </div>
           </div>
-          <div class="heading-all-tab">
-            <label for="btn-edited-enable"><strong><svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
-              <g fill="none" fill-rule="evenodd">
-                <path d="m12.594 23.258l-.012.002l-.071.035l-.02.004l-.014-.004l-.071-.036q-.016-.004-.024.006l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.016-.018m.264-.113l-.014.002l-.184.093l-.01.01l-.003.011l.018.43l.005.012l.008.008l.201.092q.019.005.029-.008l.004-.014l-.034-.614q-.005-.019-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.003-.011l.018-.43l-.003-.012l-.01-.01z" />
-                <path fill="currentColor" d="m14.535 12.225l4.242 4.243l-4.243 4.243a1 1 0 0 1-.707.293H11a1 1 0 0 1-1-1v-2.829a1 1 0 0 1 .293-.707zM17 2a2 2 0 0 1 1.995 1.85L19 4v4.02a5 5 0 0 0-4.27 1.192l-.196.185l-5.656 5.657a3 3 0 0 0-.872 1.923l-.007.198v2.829a3 3 0 0 0 .11.804l.06.192H5a2 2 0 0 1-1.995-1.85L3 19V4a2 2 0 0 1 1.85-1.995L5 2zm3.191 8.811a3 3 0 0 1 0 4.243L15.95 10.81a3 3 0 0 1 4.242 0ZM11 6H7a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2" />
-              </g>
-            </svg></strong></label>
-            <button id="btn-edited-enable" edit-enable="off" class=" slide-button">
-                <div class="off"> off</div>
-                <div class="on"> on</div>
-            </button>
-            <button id="btn-tab-info-1" class="heading-all-tab-button active my-btn">
-              Personal</button
-            ><button id="btn-tab-info-2" class="heading-all-tab-button my-btn">
-              {{$user->name}}'s team
-            </button>
+          <div class="heading-all-tab flex justify-between items-center ">
+            <div class="flex items-center"><button id="btn-tab-info-1" class="heading-all-tab-button active btn">
+              Cá nhân</button
+            ><button id="btn-tab-info-2" class="heading-all-tab-button btn">
+              Đội tuyển
+            </button></div>
+          
+            
           </div>
           <div class="container" id="tab-info-1">
             <div class="main-info">
               <div class="main-info-part">
-                <h3>Personal Information</h3>
+                <h3 class="uppercase font-bold">Thông tin công khai</h3>
                 <form action="{{route('client.my_profile_change')}}" class="change-profile" method="post">
                     @csrf
                     <table>
@@ -114,7 +117,7 @@
                               />
                             </svg>
                           </td>
-                          <td><textarea type="text" name="address">{{$user->address}}</textarea></td>
+                          <td><textarea type="text" class="textarea textarea-bordered" name="address">{{$user->address}}</textarea></td>
                         </tr>
                         <tr>
                           <td>
@@ -131,25 +134,9 @@
                               />
                             </svg>
                           </td>
-                          <td> <input type="text" name="phone" value="{{$user->phone}}"></td>
+                          <td> <input type="text" class="input input-bordered" name="phone" value="{{$user->phone}}"></td>
                         </tr>
-                        <tr>
-                          <td>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="1.2em"
-                              height="1.2em"
-                              viewBox="0 0 256 256"
-                              {...$$props}
-                            >
-                              <path
-                                fill="currentColor"
-                                d="M152 140a36 36 0 1 1-36-36a36 36 0 0 1 36 36m64-100v176a16 16 0 0 1-16 16H56a16 16 0 0 1-16-16V40a16 16 0 0 1 16-16h144a16 16 0 0 1 16 16m-24 32a8 8 0 0 0-8-8h-32a8 8 0 0 0 0 16h12.69l-18 18A52.08 52.08 0 1 0 158 109.35l18-18V104a8 8 0 0 0 16 0Z"
-                              />
-                            </svg>
-                          </td>
-                          <td>Male</td>
-                        </tr>
+                       
                         <tr>
                           <td>
                             <svg
@@ -170,7 +157,7 @@
                               </g>
                             </svg>
                           </td>
-                          <td> <input type="date" name="birthday" value="{{$user->birthday}}"> </td>
+                          <td> <input type="date" class="input input-bordered" name="birthday" value="{{$user->birthday}}"> </td>
                         </tr>
                       </table>
                       <button type="submit" class="submit-outline" onclick="return confirm('Are you sure you want to make these changes? ')" >Save</button>
@@ -178,15 +165,15 @@
                
               </div>
               <div class="main-info-part">
-                <h3>Professional</h3>
+                <h3 class="uppercase font-bold">Chuyên môn</h3>
                 <form action="{{route('client.my_profile_change')}}" class="change-profile" method="POST">
                     @csrf
                     <table>
                         <tr>
-                          <td><strong>Esport</strong></td>
+                          <td><strong>Bộ môn</strong></td>
                           <td>
                          
-                            <select name="esport_id" id="">
+                            <select name="esport_id" id="" class="select select-bordered">
                                 @foreach ($esports as $esport )
                                 <option value="{{$esport->id}}" {{$user->esport_id == $esport->id ? "selected" : ""}}>{{$esport->esport_name}}</option>
                                 @endforeach
@@ -196,9 +183,9 @@
                           </td>
                         </tr>
                         <tr>
-                          <td><strong>Rank</strong></td>
+                          <td><strong>Xếp hạng</strong></td>
                           <td>
-                            <select name="rank_id" id="">
+                            <select name="rank_id" id="" class="select select-bordered">
                                 @foreach ($ranks as $rank )
                                 <option value="{{$rank->id}}" {{$user->rank_id == $rank->id ? "selected" : ""}}>{{$rank->rank_name}}</option>
                             @endforeach
@@ -207,15 +194,15 @@
                           </td>
                         </tr>
                         <tr>
-                            <td><strong>Points</strong></td>
+                            <td><strong>Điểm</strong></td>
                             <td>
-                                 <input type="text" value="{{$user->rank_points}}" name="rank_points"> 
+                                 <input type="text" class="input input-bordered" value="{{$user->rank_points}}" name="rank_points"> 
                             </td>
                           </tr>
                         <tr>
-                          <td><strong>Position:</strong></td>
+                          <td><strong>Vị trí</strong></td>
                           <td>
-                            <select name="position_id" id="">
+                            <select name="position_id" id="" class="select select-bordered">
                                 @foreach ($positions as $position )
                                     <option value="{{$position->id}}" {{$user->position_id == $position->id ? "selected" : ""}}>{{$position->position_name}}</option>
                                 @endforeach
@@ -232,7 +219,7 @@
                
               </div>
               <div class="main-info-part">
-                <h3>Advantages</h3>
+                <h3 class="uppercase font-bold">Ưu điểm</h3>
                 <form action="{{route('client.my_profile_change')}}" class="change-profile" method="post">
                     @csrf
                     <table>
@@ -257,7 +244,7 @@
                             </svg>
                           </td>
                           <td>
-                            <textarea name="advantage_1" id="" >{{$user->advantage_1}}</textarea>
+                            <textarea name="advantage_1" id="" class="textarea textarea-bordered">{{$user->advantage_1}}</textarea>
                            
                           </td>
                         </tr>
@@ -282,7 +269,7 @@
                             </svg>
                           </td>
                           <td>
-                            <textarea name="advantage_2" id="" >{{$user->advantage_2}}</textarea>
+                            <textarea name="advantage_2" id="" class="textarea textarea-bordered" >{{$user->advantage_2}}</textarea>
                            
                           </td>
                         </tr>
@@ -307,7 +294,7 @@
                             </svg>
                           </td>
                           <td>
-                            <textarea name="advantage_3" id="" >{{$user->advantage_3}}</textarea>
+                            <textarea name="advantage_3" id="" class="textarea textarea-bordered" >{{$user->advantage_3}}</textarea>
                            
                           </td>
                         </tr>
@@ -318,52 +305,111 @@
               </div>
             </div>
             <div class="main-text">
-              <div class="main-text-part">
-                <h2>Bio</h2>
-                <div class="main-text-part-bio">
-                    <form action="{{route('client.my_profile_change')}}" method="POST" class="change-profile">
-                        @csrf
-                        <textarea name="bio" id="" cols="30" rows="10" placeholder="No information!" id="example">{{$user->bio}}</textarea>
-                        <button type="submit" class="submit-outline" onclick="return confirm('Are you sure you want to make these changes? ')">Save</button>
-                    </form>
+              <div class="flex gap-20">
+                <div class="main-text-part flex-1">
+                  <h2 class="uppercase font-bold">Giới thiệu</h2>
+                  <div class="main-text-part-bio">
+                      <form action="{{route('client.my_profile_change')}}" method="POST" class="change-profile">
+                          @csrf
+                          <textarea name="bio" class="textarea textarea-bordered" id="" cols="30" rows="10" placeholder="No information!" id="example">{{$user->bio}}</textarea>
+                          <button type="submit" class="submit-outline" onclick="return confirm('Are you sure you want to make these changes? ')">Save</button>
+                      </form>
+                      
+                  </div>
+                </div>
+                <div class=" flex-1 time-lines p-3 border shadow-sm mt-4 rounded">
+                  <h2 class="uppercase font-bold btn bg-purple-700 text-white w-full">Hoạt động</h2>
+                  <ul class="timeline timeline-vertical">
+                  @forelse ( $timelines as $timeline )
+                      <li>
+                        <hr />
+                        <div class="timeline-start">{{$timeline->start_time}} - {{$timeline->end_time}}</div>
+                        <div class="timeline-middle">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            class="h-5 w-5">
+                            <path
+                              fill-rule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                              clip-rule="evenodd" />
+                          </svg>
+                        </div>
+                        <div class="timeline-end timeline-box">{{$timeline->description}} 
+                          
+                          <details class="dropdown dropdown-top">
+                            <summary class="btn-xs cursor-pointer bg-yellow-200 m-1">Chỉnh sửa</summary>
+                            <form method="POST" action="{{route('client.my_timelines.update', $timeline->id)}}" class="menu dropdown-content bg-base-100 border rounded-box z-[1] p-2 shadow">
+                              @csrf
+                              @method('PUT')
+                              <h1 class="uppercase text-center my-3">Sửa cột mốc</h1>
+                                  <div class="flex flex-col gap-2">
+                                    <label class="input input-bordered flex items-center gap-2">
+                                      <input type="number" min="1900" max="2025" class="grow" name="start_time"  placeholder="Năm bắt đầu" value="{{$timeline->start_time}}" />
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M10 20a10 10 0 1 1 0-20a10 10 0 0 1 0 20m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16m-1-7.59V4h2v5.59l3.95 3.95l-1.41 1.41z"/></svg>
+                                    </label>
+                                    <label class="input input-bordered flex items-center gap-2">
+                                      <input type="number" min="1900" max="2025" class="grow" name="end_time"  placeholder="Năm kết thúc" value="{{$timeline->end_time}}" />
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M10 20a10 10 0 1 1 0-20a10 10 0 0 1 0 20m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16m-1-7.59V4h2v5.59l3.95 3.95l-1.41 1.41z"/></svg>
+                                    </label>
+                                    <input type="text" value="{{$timeline->description}} " class="input input-bordered" name="description" placeholder="Mô tả">
+                                  </div>
+                                  <button type="submit" class="btn btn-accent my-2 w-full">Lưu</button>
+                            </form>
+                          </details>
+                          <form method="POST" action="{{route('client.my_timelines.delete', $timeline->id)}}" class="inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button class="rounded btn-xs bg-red-400"  type="submit">Loại bỏ</button>
+                          </form>
+                          
+                        </div>
+                        <hr />
+                      </li>
+
+                      
+                  @empty
                     
+                  @endforelse
+                  <li>
+                    <hr />
+                    <div class="timeline-start">Thêm mốc mới</div>
+                    <div class="timeline-middle">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        class="h-5 w-5">
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <form class="timeline-end timeline-box" action="{{route('client.my_timelines.add')}}" method="POST">
+                      @csrf
+                        <div class="flex flex-col gap-2">
+                          <label class="input input-bordered flex items-center gap-2">
+                            <input type="number" min="1900" max="2025" class="grow" name="start_time"  placeholder="Năm bắt đầu" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M10 20a10 10 0 1 1 0-20a10 10 0 0 1 0 20m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16m-1-7.59V4h2v5.59l3.95 3.95l-1.41 1.41z"/></svg>
+                          </label>
+                          <label class="input input-bordered flex items-center gap-2">
+                            <input type="number" min="1900" max="2025" class="grow" name="end_time"  placeholder="Năm kết thúc" />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="currentColor" d="M10 20a10 10 0 1 1 0-20a10 10 0 0 1 0 20m0-2a8 8 0 1 0 0-16a8 8 0 0 0 0 16m-1-7.59V4h2v5.59l3.95 3.95l-1.41 1.41z"/></svg>
+                          </label>
+                          <input type="text" class="input input-bordered" name="description" placeholder="Mô tả">
+                        </div>
+                        <button type="submit" class="btn btn-accent my-2 w-full">Lưu</button>
+                    </form>
+                   
+                  </li>
+                   
+                  </ul>
                 </div>
               </div>
-              <div class="main-text-part">
-                <h2>Dung's Posts</h2>
-                @foreach ($user->posts as $post )
-                <div class="poster-item bg-gray-50">
-                    <div class="p-2">
-                      <header class="poster-item-header pb-1">
-                        <img
-                          src="/storage/images/{{$post->thumbnail}}"
-                          class="poster-item-header-img"
-                        />
-                        <div class="poster-name">
-                          <p class="hover:underline font-bold text-rose-600">
-                            {{$user->name}}
-                          </p>
-                          <span>{{$post->topic->topic_name}}</span>
-                          <span class="esport-in-post"> - {{$post->esport->esport_name}}</span>
-                          <span class="text-gray-400"> - {{$post->created_at->diffForHumans()}}</span>
-                        </div>
-                      </header>
-                      <hr />
-                      {!!$post->content!!}
-                    </div>
-                    <hr>
-                    <img
-                      src="/assets/images/Virtus-Pro-.jpg"
-                      alt=""
-                      srcset=""
-                      width="100%"
-                    />
-                    <p class="count-comment">{{count($post->comments)}} comments</p>
-                  </div>
-                 
-                @endforeach
               
-              </div>
+             
             </div>
           </div>
           @livewire('profile.my-team')
@@ -372,24 +418,46 @@
     </div>
 
 <script>
-    $(document).ready(function () {
-        var formChanges = $('.change-profile')
-        const btnSaves = formChanges.find('button[type=submit]')
+    // $(document).ready(function () {
+    //     var formChanges = $('.change-profile')
+    //     const btnSaves = formChanges.find('button[type=submit]')
 
-        const formInputs = formChanges.find('input, select, textarea')
+    //     const formInputs = formChanges.find('input, select, textarea')
       
-        formInputs.attr('disabled', 'on')
-        btnSaves.hide()
-        $("#btn-edited-enable").click(function (e) { 
-            formInputs.prop('disabled', (i, val)=>{
+    //     formInputs.attr('disabled', 'on')
+    //     btnSaves.hide()
+    //     $("#btn-edited-enable").click(function (e) { 
+    //         formInputs.prop('disabled', (i, val)=>{
                
-                return !val
-            })
-            btnSaves.toggle()
-           if($(this).attr('edit-enable')==="on")
-              $(this).attr('edit-enable',"off")
-            else $(this).attr('edit-enable', "on")
-        });
+    //             return !val
+    //         })
+            
+    //         btnSaves.toggle()
+    //        if($(this).attr('edit-enable')==="on")
+    //           $(this).attr('edit-enable',"off")
+    //         else $(this).attr('edit-enable', "on")
+    //     });
+    // });
+   
+    $(document).ready(function () {
+       $('.poster-item').each(function(){
+        $(this).children('.poster-item-button-options').hide()
+         $(this).children('.poster-item-button').click(function(e){
+               $(this).parent().children('.poster-item-button-options').toggle()
+         })
+       })
+
+
+       $('#password, #confirm_password').on('keyup', function () {
+            if ($('#password').val() == $('#confirm_password').val()) { 
+              $('#message').html('Khớp').css('color', 'green');
+            } else 
+              $('#message').html('Không khớp').css('color', 'red');
+            });
     });
+    
+</script>
+<script>
+  tippy('[data-tippy-content]');
 </script>
 @endsection

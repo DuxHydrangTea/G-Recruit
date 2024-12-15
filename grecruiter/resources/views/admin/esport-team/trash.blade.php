@@ -56,7 +56,7 @@
                             
                             <td><a href=""><strong>{{$d->id}}</strong></a>  </td>
                             <td>{{$d->name}}</td>
-                            <td> <img src="{{ asset('storage/images').'/'.$d->avatar}}" alt="" width="30px" height="30px"  class="avatar"> </td>
+                            <td> <img src=" /storage{{$d->avatar}}" alt="" width="30px" height="30px"  class="avatar"> </td>
                             <td>{{$d->esport_id}}</td>
                             
                             <td>0</td>

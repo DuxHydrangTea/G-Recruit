@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEsportTeamRequest;
+use App\Models\EsportTeam;
 use App\Repositories\EsportTeamRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Repositories\EsportRepositoryInterface;
@@ -91,5 +92,38 @@ class EsportTeamController extends Controller
     {
         $this->esport_team_repository->force_delete($id);
         return redirect()->route('esport-team-trash.index')->with("add_message", "Deleted forever successfully!");
+    }
+
+    public function approveTeam($id)
+    {
+        $esportTeam = EsportTeam::find($id);
+        try {
+            $esportTeam->update(['is_approved' => true]);
+            notify()->success("Duyệt đội " . $esportTeam->name . " thành công!");
+            return redirect()->back();
+        } catch (\Throwable $th) {
+            notify()->error("Duyệt đội thất bại!");
+            return redirect()->back();
+        }
+    }
+    public function denyTeam($id)
+    {
+        // dd($id);
+        $esportTeam = EsportTeam::find($id);
+        try {
+            $esportTeam->delete();
+            notify()->success("Đã từ chối đội " . $esportTeam->name . " !");
+            return redirect()->back();
+
+        } catch (\Throwable $th) {
+            notify()->error("Từ chối đội thất bại!");
+            return redirect()->back();
+        }
+    }
+    public function nonApproveTeams()
+    {
+        $data = EsportTeam::notApproved()->get();
+        // dd($data);
+        return view('admin.esport-team.non-approved', compact('data'));
     }
 }

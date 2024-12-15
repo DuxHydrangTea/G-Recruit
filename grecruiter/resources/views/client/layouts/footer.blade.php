@@ -45,6 +45,12 @@
 <script>
     var editor = new FroalaEditor('#example');
 </script>
-
+<script>
+    const loadScreen = document.getElementById('loading-overlay')
+    console.log(loadScreen)
+    window.addEventListener('load',function (){ 
+     loadScreen.classList.add('opacity-0', 'invisible')
+   })
+  </script>
 </body>
 </html>

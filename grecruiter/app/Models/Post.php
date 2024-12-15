@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Sluggable;
     protected $fillable = [
         'title',
         'slug',
@@ -22,7 +23,16 @@ class Post extends Model
         'thumbnail',
         'is_privated',
         'apply_type_id',
+
     ];
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
     public function scopePublic($query)
     {
         return $query->where('is_privated', 0)->orderByDesc('id');
@@ -38,19 +48,21 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withDefault();
     }
     public function position()
     {
-        return $this->belongsTo(Position::class);
+        return $this->belongsTo(Position::class)->withDefault();
     }
     public function esport()
     {
-        return $this->belongsTo(Esport::class);
+        return $this->belongsTo(Esport::class)->withDefault();
     }
+
+
     public function esportTeam()
     {
-        return $this->belongsTo(EsportTeam::class);
+        return $this->belongsTo(EsportTeam::class)->withDefault();
     }
 
     public function likes()
@@ -63,6 +75,26 @@ class Post extends Model
     }
     public function applyType()
     {
-        return $this->belongsTo(ApplyType::class);
+        return $this->belongsTo(ApplyType::class)->withDefault();
+    }
+
+    // ============ METHOD ==============
+    public function getAuthor()
+    {
+        if ($this->esportTeam)
+            return $this->esportTeam;
+        return $this->user;
+    }
+
+    public function isLiked()
+    {
+        $user = auth()->user();
+        $like = Like::where(
+            ['user_id' => $user->id, 'post_id' => $this->id]
+        )->first();
+        if ($like)
+            return true;
+        else
+            return false;
     }
 }

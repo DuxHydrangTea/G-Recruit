@@ -3,23 +3,39 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Apply;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Rank;
+use App\Models\Esport;
 use App\Models\Position;
 class UsersController extends Controller
 {
     //
     public function index(Request $request)
     {
-        $esport_id = $request->esport;
-        $users = User::notAdmins()->when($esport_id, function ($query, $esport_id) {
-            return $query->where('esport_id', $esport_id);
+        $esports = Esport::all();
+        $ranks = Rank::all();
+
+        $f_esport = $request->esport;
+        $f_rank = $request->rank;
+        $f_position = $request->position;
+        $users = User::notAdmins()->notFounders()->when($f_esport, function ($query, $f_esport) {
+            return $query->where('esport_id', $f_esport);
+        })->when($f_rank, function ($query, $f_rank) {
+            return $query->where('rank_id', $f_rank);
+        })->when($f_position, function ($query, $f_position) {
+            return $query->where('position_id', $f_position);
         })->get();
         $team = Auth::user()->esportTeam;
-        $positions = Position::positionsOf($team->esport_id);
-        return view('client.users.index', compact('users', 'positions'));
+        if ($team)
+            $positions = Position::positionsOf($team->esport_id);
+        else
+            $positions = Position::all();
+
+
+        return view('client.users.index', compact('users', 'positions', 'esports', 'ranks'));
     }
 
     public function recruit($id)

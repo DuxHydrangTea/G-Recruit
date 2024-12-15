@@ -10,7 +10,7 @@ class PostComponent extends Component
     public $posts = [];
     public function mount()
     {
-        $this->posts = Post::public()->limit(3)->get();
+        $this->posts = Post::public()->limit(6)->get();
     }
     public function render()
     {

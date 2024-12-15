@@ -63,7 +63,7 @@
                         @enderror
                     </div>
                     <div class="col-md-12 form-group">
-                        <img src="{{ asset('storage/images').'/'.$esport->icon}}" alt="" srcset="" width="50px" class="justify-contents-center">
+                        <img src="{{ '/storage'.$esport->icon}}" alt="" srcset="" width="50px" class="justify-contents-center">
                     </div>
                  
                     <div class="col-sm-12 d-flex justify-content-end">

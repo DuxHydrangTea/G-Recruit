@@ -5,7 +5,7 @@ use Storage;
 class DeleteWithImage
 {
 
-    const FILE_COLUMNS = ['avatar', 'thumbnail', 'file', 'image', 'audio', 'audio_file'];
+    const FILE_COLUMNS = ['avatar', 'thumbnail', 'file', 'image', 'audio', 'audio_file', 'pdf_cv'];
 
 
 
@@ -33,10 +33,14 @@ class DeleteWithImage
         $existedColumns = DeleteWithImage::fileColumns($record);
         foreach ($existedColumns as $column) {
             if ($record[$column]) {
-                Storage::delete('public/' . $record[$column]);
+                // Storage::delete('public/' . $record[$column]);
+                DeleteWithImage::deleteFile($record[$column]);
             }
         }
     }
 
-
+    public static function deleteFile($path)
+    {
+        Storage::delete('public/' . $path);
+    }
 }

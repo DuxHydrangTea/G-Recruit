@@ -107,8 +107,8 @@ textarea {
     position: relative;
 }
 .container-nav-bar-ul a:hover {
-    color: #fff;
-    transition: all 0ms !important;
+    color: #292929;
+    /* transition: all 0ms !important; */
 }
 .container-nav-bar-ul .child-nav {
     position: absolute;
@@ -119,7 +119,7 @@ textarea {
     border-radius: 20px;
     opacity: 0;
     visibility: hidden;
-    z-index: 1;
+    z-index: 11;
 }
 .container-nav-bar-ul li:hover .child-nav {
     left: 100%;

@@ -7,6 +7,8 @@ class UploadUltility
 
     const PATH_UPLOAD_IMAGES = "/images";
     const PATH_UPLOAD_VIDEOS = "/videos";
+    const PATH_UPLOAD_AUDIOS = "/audios";
+    const PATH_UPLOAD_PDFS = "/pdfs";
     /**
      * Dùng cho upload file ảnh. Trả về chuỗi vị trí file trong thư mục Storage
      * @param \File $file
@@ -21,7 +23,7 @@ class UploadUltility
             return UploadUltility::PATH_UPLOAD_IMAGES . '/' . $name_file;
         } catch (\Throwable $th) {
 
-            return "";
+            return false;
         }
     }
 
@@ -35,11 +37,11 @@ class UploadUltility
         try {
             $ranInt = random_int(1, 100);
             $name_file = $ranInt . $file->getClientOriginalName();
-            $path = $file->storeAs("public/audios", $name_file);
-            return 'audios/' . $name_file;
+            $path = $file->storeAs(UploadUltility::PATH_STORAGE . UploadUltility::PATH_UPLOAD_AUDIOS, $name_file);
+            return UploadUltility::PATH_UPLOAD_AUDIOS . '/' . $name_file;
         } catch (\Throwable $th) {
 
-            return "";
+            return false;
         }
     }
 
@@ -48,11 +50,24 @@ class UploadUltility
         try {
             $ranInt = random_int(1, 100);
             $name_file = $ranInt . $file->getClientOriginalName();
-            $path = $file->storeAs(UploadUltility::PATH_STORAGE . UploadUltility::PATH_UPLOAD_IMAGES, $name_file);
-            return 'audios/' . $name_file;
+            $path = $file->storeAs(UploadUltility::PATH_STORAGE . UploadUltility::PATH_UPLOAD_VIDEOS, $name_file);
+            return UploadUltility::PATH_UPLOAD_VIDEOS . '/' . $name_file;
         } catch (\Throwable $th) {
 
-            return "";
+            return false;
+        }
+    }
+
+    public static function uploadPdf($file)
+    {
+        try {
+            $ranInt = '';
+            $name_file = $ranInt . $file->getClientOriginalName();
+            $path = $file->storeAs(UploadUltility::PATH_STORAGE . UploadUltility::PATH_UPLOAD_PDFS, $name_file);
+            return UploadUltility::PATH_UPLOAD_PDFS . '/' . $name_file;
+        } catch (\Throwable $th) {
+
+            return false;
         }
     }
 }

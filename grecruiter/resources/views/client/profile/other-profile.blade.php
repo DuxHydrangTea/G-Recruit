@@ -6,28 +6,25 @@
         @include('client.layouts.side-bar')
         <!-- main content -->
         <div class="main-content">
-          <div class="cover-image">
+          <div class="cover-image border shadow">
             <img src="/assets/user/assets/images/Frame 7.png" width="100%" alt="" />
             <div class="infor-inner">
               <div class="infor-basic">
                 <img
-                  src="/assets/user/assets/images/azir.jpg"
+                  src="/storage{{$user->avatar}}"
                   width="100px"
                   height="100px"
                   alt=""
                 />
                 <div class="infor-name">
-                  <h2>{{$user->name}}</h2>
-                  <p class="">
-                    {{$user->nickname}} -
-                    <span
-                      >N.N.D havent join anyteam...
-                      <a href=""><strong>INVITE HIM</strong></a></span
-                    >
+                  <h2 class="text-2xl">{{$user->name}}</h2>
+                  <p class="" style="">
+                    {{$user->nickname}}
+                    
                   </p>
                 </div>
-                <p class="type-user">Pro Player</p>
-                <a href="" class="link-highlight"
+               
+                <a href="" class="btn bg-yellow-50 "
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="1.2em"
@@ -47,29 +44,22 @@
                   Highlight Video</a
                 >
               </div>
-              <div class="infor-follow">
-                <a href="" class="follow-action"
-                  >Follow <strong>{{$user->name}}</strong></a
-                >
-                <button><strong>4</strong> followers</button>
-                <button><strong>4</strong> followings</button>
-                <button><strong>4</strong> posts</button>
-              </div>
+             
             </div>
           </div>
           <div class="heading-all-tab">
            
            
             <button id="btn-tab-info-1" class="heading-all-tab-button active my-btn">
-              Personal</button
+              Cá nhân</button
             ><button id="btn-tab-info-2" class="heading-all-tab-button my-btn">
-              {{$user->name}}'s team
+              Đội tuyển tham gia
             </button>
           </div>
           <div class="container" id="tab-info-1">
             <div class="main-info">
               <div class="main-info-part">
-                <h3>Personal Information</h3>
+                <h3>Thông tin cá nhân</h3>
                 <form action="{{route('client.my_profile_change')}}" class="change-profile" method="post">
                     @csrf
                     <table>
@@ -164,17 +154,17 @@
                           <td> <input type="date" name="birthday" value="{{$user->birthday}}"> </td>
                         </tr>
                       </table>
-                      <button type="submit" class="submit-outline" onclick="return confirm('Are you sure you want to make these changes? ')" >Save</button>
+                      <button type="submit" class="submit-outline" onclick="return confirm('Bạn có chắc là muốn thay đổi những thông tin này?')" >Save</button>
                 </form>
                
               </div>
               <div class="main-info-part">
-                <h3>Professional</h3>
+                <h3>Chuyên môn</h3>
                 <form action="{{route('client.my_profile_change')}}" class="change-profile" method="POST">
                     @csrf
                     <table>
                         <tr>
-                          <td><strong>Esport</strong></td>
+                          <td><strong>Bộ môn</strong></td>
                           <td>
                          
                             <select name="esport_id" id="">
@@ -187,7 +177,7 @@
                           </td>
                         </tr>
                         <tr>
-                          <td><strong>Rank</strong></td>
+                          <td><strong>Xếp hạng</strong></td>
                           <td>
                             <select name="rank_id" id="">
                                 @foreach ($ranks as $rank )
@@ -198,13 +188,13 @@
                           </td>
                         </tr>
                         <tr>
-                            <td><strong>Points</strong></td>
+                            <td><strong>Điểm</strong></td>
                             <td>
                                  <input type="text" value="{{$user->rank_points}}" name="rank_points"> 
                             </td>
                           </tr>
                         <tr>
-                          <td><strong>Position:</strong></td>
+                          <td><strong>Vị trí</strong></td>
                           <td>
                             <select name="position_id" id="">
                                 @foreach ($positions as $position )
@@ -217,13 +207,13 @@
                         </tr>
                         
                       </table>
-                      <button type="submit" class="submit-outline" onclick="return confirm('Are you sure you want to make these changes? ')" >Save</button>
+                      <button type="submit" class="submit-outline" onclick="return confirm('Bạn có chắc là muốn thay đổi những thông tin này?')" >Save</button>
               
                 </form>
                
               </div>
               <div class="main-info-part">
-                <h3>Advantages</h3>
+                <h3>Ưu điểm</h3>
                 <form action="{{route('client.my_profile_change')}}" class="change-profile" method="post">
                     @csrf
                     <table>
@@ -303,32 +293,87 @@
                           </td>
                         </tr>
                       </table>
-                      <button type="submit" class="submit-outline" onclick="return confirm('Are you sure you want to make these changes? ')">Save</button>
+                      <button type="submit" class="submit-outline" onclick="return confirm('Bạn có chắc là muốn thay đổi những thông tin này?')">Save</button>
                 </form>
                
               </div>
             </div>
             <div class="main-text">
-              <div class="main-text-part">
-                <h2>Bio</h2>
-                <div class="main-text-part-bio">
-                    <form action="{{route('client.my_profile_change')}}" method="POST" class="change-profile">
-                        @csrf
-                        <textarea name="bio" id="" cols="30" rows="10" placeholder="No information!" id="example">{{$user->bio}}</textarea>
-                        <button type="submit" class="submit-outline" onclick="return confirm('Are you sure you want to make these changes? ')">Save</button>
-                    </form>
-                    
+              <div class="w-[600px]">
+                <div class="main-text-part">
+                  <h2 class="uppercase font-bold">Giới thiệu</h2>
+                  <div class="main-text-part-bio">
+                      <form action="{{route('client.my_profile_change')}}" method="POST" class="change-profile">
+                          @csrf
+                          <textarea name="bio" id="" cols="30" rows="10" placeholder="No information!" id="example">{{$user->bio}}</textarea>
+                          <button type="submit" class="submit-outline" onclick="return confirm('Are you sure you want to make these changes? ')">Save</button>
+                      </form>
+                      
+                  </div>
+                </div>
+                <div class="time-lines p-3 border shadow-sm mt-4 rounded">
+                  <h2 class="uppercase font-bold btn bg-purple-700 text-white w-full">Hoạt động</h2>
+                  <ul class="timeline timeline-vertical">
+                  @forelse ( $timelines as $timeline )
+                      <li>
+                        <hr />
+                        <div class="timeline-start">{{$timeline->start_time}} - {{$timeline->end_time}}</div>
+                        <div class="timeline-middle">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            class="h-5 w-5">
+                            <path
+                              fill-rule="evenodd"
+                              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                              clip-rule="evenodd" />
+                          </svg>
+                        </div>
+                        <div class="timeline-end timeline-box">{{$timeline->description}} 
+                          
+                         
+                         
+                          
+                        </div>
+                        <hr />
+                      </li>
+
+                      
+                  @empty
+                  <li>
+                    <hr />
+                    <div class="timeline-start">Hiện tại</div>
+                    <div class="timeline-middle">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        class="h-5 w-5">
+                        <path
+                          fill-rule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                          clip-rule="evenodd" />
+                      </svg>
+                    </div>
+                    <div class="timeline-end timeline-box">Chưa có mốc thời gian nào</div>
+                   
+                  </li>
+                  @endforelse
+                  
+                   
+                  </ul>
                 </div>
               </div>
               <div class="main-text-part">
-                <h2>Dung's Posts</h2>
+                <h2>Bài viết</h2>
                 @forelse ($user->posts as $post )
-                <div class="poster-item bg-gray-50">
+                <div class="poster-item bg-gray-50 border mb-3 shadow">
                     <div class="p-2">
                       <header class="poster-item-header pb-1">
                         <img
-                          src="/storage/images/{{$post->thumbnail}}"
-                          class="poster-item-header-img"
+                          src="/storage{{$post->thumbnail}}"
+                          class="poster-item-header-img rounded"
                         />
                         <div class="poster-name">
                           <p class="hover:underline font-bold text-rose-600">
@@ -340,7 +385,10 @@
                         </div>
                       </header>
                       <hr />
-                      {!!$post->content!!}
+                      <p class="divider"> <a href="" class="link link-dark">{{$post->title}}</a></p>
+                      <hr>
+                     <div class="line-clamp-4">
+                      {!!$post->content!!}</div> 
                     </div>
                     <hr>
                     <img
@@ -349,7 +397,7 @@
                       srcset=""
                       width="100%"
                     />
-                    <p class="count-comment">{{count($post->comments)}} comments</p>
+                    <p class="count-comment text-end">{{count($post->comments)}} bình luận - {{count($post->likes)}} lượt thích</p>
                   </div>
                  
                   @empty
@@ -359,7 +407,9 @@
               </div>
             </div>
           </div>
-          @livewire('profile.other-team')
+          @livewire('profile.other-team', [
+            'id' => $user->id
+          ])
         </div>
       </div>
     </div>

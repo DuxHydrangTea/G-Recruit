@@ -9,8 +9,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TimeLine extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'start_time',
+        'end_time',
+        'description',
+    ];
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->withDefault();
     }
 }

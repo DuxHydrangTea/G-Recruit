@@ -45,4 +45,7 @@ class Esport extends Model
         return $this->hasMany(Post::class);
     }
 
+
+    // ============== METHOD =================
+ 
 }

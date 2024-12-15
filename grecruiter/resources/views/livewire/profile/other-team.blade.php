@@ -15,39 +15,28 @@
             accept="image/*"
           />
           <input type="file" name="avatar" hidden id="avatar_team" onchange="document.getElementById('show_avatar_team').src = window.URL.createObjectURL(this.files[0])">
-          <div class="icon-open-gallary">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5a5 5 0 0 0 5 5a5 5 0 0 0 5-5a5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3" />
-            </svg>
-          </div>
+          
          </label>
-        <button type="submit" class="my-btn my-btn-save">Save</button>
-       </form>
+        <button type="submit" class="my-btn my-btn-Lưu">Lưu</button>
+      
         
         
-        <form class="py-2 change-profile" method="post" action="{{route('client.update_name_team')}}">
-          @csrf
-          <input type="text" name="name" value="{{$team->name}}"> 
-          <button type="submit" class="edit-btn">Rename</button>
-        </form>
+      
+          <h1 class="font-bold uppercase text-center mb-3">{{$team->name}}</h1>
+         
+       
         <hr />
-        <form action="{{route('client.update_esport_my_team')}}" class="side-1-esport change-profile" method="post" >
-          @csrf
+        <div class="side-1-esport change-profile flex"  >
+          
           <img
-            src="/storage/images/{{$team->esport->icon}}"
+            src="/storage{{$team->esport->icon}}"
             height="30px"
             width="30px"
             alt=""
           />
           
-          <select name="esport_id" id="" >
-              @foreach ($esports as $eps )
-              <option value="{{$eps->id}}" {{$team->esport->id == $eps->id ? "selected" : ""}}>{{$eps->esport_name}}</option>
-              @endforeach    
-          </select>
-          <button type="submit" class="my-btn my-btn-save">Save</button>
-          {{-- <h3><i>{{$team->esport->esport_name}}</i></h3> --}}
-        </form>
+          <span>{{$team->esport->esport_name}}</span>
+        </div>
         <p class="founder"><strong><i class="fa-solid fa-user-tie"></i> :</strong> 
         @foreach ($team->users as $founder )
                 {{$founder->name." / "}}
@@ -61,12 +50,7 @@
                 <td class="position">{{$mem->position->position_name}}:</td>
                 <td><a href="">{{$mem->name}} ({{$mem->nickname}})</a></td>
                 
-                <td><a href="{{route('client.kick_my_member', $mem->id)}}"><svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24">
-                  <g fill="none">
-                    <path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z" />
-                    <path fill="currentColor" d="M16 14a5 5 0 0 1 5 5v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1a5 5 0 0 1 5-5zM12 2a5 5 0 1 1 0 10a5 5 0 0 1 0-10m10 8a1 1 0 0 1 .117 1.993L22 12h-4a1 1 0 0 1-.117-1.993L18 10z" />
-                  </g>
-                </svg></a></td>
+               
               </tr>
             @endforeach
         
@@ -75,69 +59,32 @@
 
         <details class="team-info-down" open>
           <summary>
-            <h2 class="team-introduce-heading">
+            <h2 class="btn bg-purple-800 text-white w-full">
               Team Introduce
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="1.2em"
-                height="1.2em"
-                viewBox="0 0 48 48"
-              >
-                <defs>
-                  <mask id="ipSDownC0">
-                    <g
-                      fill="none"
-                      stroke-linejoin="round"
-                      stroke-width="4"
-                    >
-                      <path
-                        fill="#fff"
-                        stroke="#fff"
-                        d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z"
-                      />
-                      <path
-                        stroke="#000"
-                        stroke-linecap="round"
-                        d="m33 21l-9 9l-9-9"
-                      />
-                    </g>
-                  </mask>
-                </defs>
-                <path
-                  fill="currentColor"
-                  d="M0 0h48v48H0z"
-                  mask="url(#ipSDownC0)"
-                />
-              </svg>
+              <i class="fa-solid fa-chevron-down text-white"></i>
             </h2>
           </summary>
 
-          <form class="team-introduce-content change-profile" method="POST" action="{{route('client.update_information_team')}}">
-            @csrf
-            <button type="submit" class="my-btn my-btn-save">Save</button>
-              <textarea name="description" id="" rows="10">{{$team->description}}
-              </textarea>
+          <div class="">
+           
+              <div class="p-3">{!!$team->description!!}
+              </div>
                
-          </form>
+          </div>
         </details>
       </div>
       <div class="team-info-side">
-        <div class="team-info-side-tab">
-          <button id="introduce-tab-button" class="active">
-            Introduce & Posts
-          </button>
-          <a href="">Approving</a>
-        </div>
+        
         <div class="" id="introduce-tab">
           <div class="main-text-part">
-            <h2>Posts of Team</h2>
+            <h2>Bài viết của đội tuyển</h2>
             @forelse ($posts as $post )
             <div class="poster-item bg-gray-50">
                 <div class="p-2">
                   <header class="poster-item-header pb-1">
                     <img
-                      src="/storage/images/{{$post->thumbnail}}"
-                      class="poster-item-header-img"
+                      src="/storage{{$post->thumbnail}}"
+                      class="poster-item-header-img rounded"
                     />
                     <div class="poster-name">
                       <p class="hover:underline font-bold text-rose-600">
@@ -150,8 +97,10 @@
                       <span class="text-gray-400"> - {{$post->created_at->diffForHumans()}}</span>
                     </div>
                   </header>
+                  <hr>
+                  <div class="divider"> <h1 class="cursor-pointer ">{{$post->title}}</h1></div>
                   <hr />
-                  <div class="content max-line-4">
+                  <div class=" line-clamp-4">
                     {!!$post->content!!}
                   </div>
                 </div>

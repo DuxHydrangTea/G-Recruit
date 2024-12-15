@@ -10,10 +10,11 @@ class Member extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'esport_id',
+
         'user_id',
         'position_id',
         'confirm',
+        'esport_team_id',
     ];
 
     public function user()
